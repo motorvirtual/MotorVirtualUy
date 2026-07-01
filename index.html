@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuNuevoNombre | Vehículos e Info de Mercado</title>
+    <title>MotorVirtualUy | Vehículos Eléctricos e Info de Mercado</title>
     <style>
         /* --- ESTILOS AL ESTILO MARKETPLACE / MERCADO LIBRE --- */
         :root {
@@ -12,7 +12,7 @@
             --text-dark: #333333;
             --text-gray: #666666;
             --price-color: #333333;
-            --link-blue: #3483fa; /* Azul de botones y enlaces de ML */
+            --link-blue: #3483fa; /* Azul de botones y enlaces */
             --btn-green: #00a650; /* Verde de contacto/compra */
         }
 
@@ -24,7 +24,7 @@
             color: var(--text-dark);
         }
 
-        /* BARRA SUPERIOR ESTILO ML */
+        /* BARRA SUPERIOR ESTILO MARKETPLACE */
         header {
             background-color: var(--ml-yellow);
             padding: 0.8rem 2rem;
@@ -47,13 +47,17 @@
             gap: 15px;
         }
 
-        /* CAMBIA TU NOMBRE AQUÍ (ESTILO LOGO) */
+        /* LOGOTIPO DE LA PÁGINA */
         .logo {
             font-size: 1.6rem;
             font-weight: bold;
-            color: #2d3277;
+            color: #1a252f;
             text-decoration: none;
             letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--link-blue);
         }
 
         /* Buscador integrado en la barra */
@@ -75,6 +79,7 @@
             background: white;
             border-right: 1px solid #ddd;
             color: var(--text-gray);
+            width: 100%;
         }
 
         .search-box button {
@@ -105,7 +110,7 @@
             margin: 1.5rem auto;
             padding: 0 1rem;
             display: grid;
-            grid-template-columns: 3fr 1fr; /* Diseño de catálogo a la izquierda, noticias a la derecha */
+            grid-template-columns: 3fr 1fr; /* Catálogo a la izquierda, información a la derecha */
             gap: 1.5rem;
         }
 
@@ -120,7 +125,7 @@
             color: var(--text-dark);
         }
 
-        /* GRID DE PRODUCTOS COMERCIALES */
+        /* GRID DE PRODUCTOS */
         .grid-autos {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -165,15 +170,16 @@
         .card-title {
             margin: 0 0 0.5rem 0;
             font-size: 0.9rem;
-            color: var(--text-gray);
-            font-weight: 400;
+            color: #111;
+            font-weight: 600;
             line-height: 1.3;
         }
         
         .card-specs {
             font-size: 0.8rem;
-            color: #999999;
+            color: var(--text-gray);
             margin-bottom: 1rem;
+            line-height: 1.4;
         }
 
         .btn-contact {
@@ -219,24 +225,23 @@
     <header>
         <div class="header-container">
             <div class="header-top">
-                <!-- 1. AQUÍ CAMBIAS EL NOMBRE DE TU PÁGINA -->
-                <a href="#" class="logo">TuMarcaAutos</a> 
+                <a href="#" class="logo">MotorVirtual<span>Uy</span></a> 
                 
-                <!-- Buscador de Categorías directo -->
+                <!-- Buscador de Categorías -->
                 <div class="search-box">
                     <select id="categorySelect">
-                        <option value="todos">Todas las categorías</option>
-                        <option value="electrico">Eléctricos</option>
-                        <option value="suv">SUVs</option>
-                        <option value="sedan">Sedanes</option>
+                        <option value="todos">Todos los Modelos Arcfox</option>
+                        <option value="t5-std">Arcfox T5 (Standard)</option>
+                        <option value="t5-pro">Arcfox T5 (Advanced/Pro)</option>
+                        <option value="otros">Otros Modelos EV</option>
                     </select>
                     <button onclick="filtrarVehiculos()">Buscar</button>
                 </div>
             </div>
             <nav>
-                <a href="#">Vehículos</a>
-                <a href="#">Informes de Mercado</a>
-                <a href="#">Contacto</a>
+                <a href="#">Modelos Disponibles</a>
+                <a href="#">Análisis de Mercado</a>
+                <a href="#">Contacto Comercial</a>
             </nav>
         </div>
     </header>
@@ -244,66 +249,60 @@
     <!-- CONTENIDO GENERAL -->
     <main class="main-container">
         
-        <!-- COLUMNA IZQUIERDA: INVENTARIO -->
+        <!-- COLUMNA IZQUIERDA: CATALOGO -->
         <section>
             <div class="section-title">Publicaciones Destacadas</div>
             <div class="grid-autos" id="contenedorAutos">
-                <!-- Cargados dinámicamente -->
+                <!-- Se carga dinámicamente con JavaScript -->
             </div>
         </section>
 
-        <!-- COLUMNA DERECHA: NOTICIAS / TENDENCIAS -->
+        <!-- COLUMNA DERECHA: INFO DE MERCADO -->
         <aside class="sidebar-news">
-            <div class="section-title" style="font-size: 1.1rem;">Info del Mercado</div>
+            <div class="section-title" style="font-size: 1.1rem;">Análisis e Info de Mercado</div>
             
             <div class="mini-noticia">
                 <span class="noticia-tag">Comparativas</span>
-                <h4><a href="#">Duelo SUV Eléctrico: Nuevas alternativas del mercado</a></h4>
+                <h4><a href="#">Arcfox vs. BYD: Análisis de posicionamiento dinámico y ventajas competitivas</a></h4>
             </div>
 
             <div class="mini-noticia">
                 <span class="noticia-tag">Tecnología</span>
-                <h4><a href="#">¿Qué es el HUD (Head-Up Display) y cómo se activa?</a></h4>
+                <h4><a href="#">¿Cómo funciona el Head-Up Display (HUD) inteligente en el Arcfox T5?</a></h4>
             </div>
 
             <div class="mini-noticia">
-                <span class="noticia-tag">Análisis</span>
-                <h4><a href="#">Guía de baterías: Rendimiento y autonomía real</a></h4>
+                <span class="noticia-tag">Especificaciones</span>
+                <h4><a href="#">Baterías LFP y Ternarias: Rendimiento, ciclos de vida y carga rápida en vehículos modernos</a></h4>
             </div>
         </aside>
 
     </main>
 
+    <!-- LÓGICA DE JAVASCRIPT -->
     <script>
-        // BASE DE DATOS DE VEHÍCULOS
+        // BASE DE DATOS DE VEHÍCULOS CONFIGURADA
         const inventario = [
             {
-                titulo: "SUV Eléctrico Inteligente Tech-Full",
-                categoria: "electrico",
-                precio: 42900,
+                titulo: "Arcfox T5 Standard (STD)",
+                categoria: "t5-std",
+                precio: 36500,
                 imagen: "https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=500",
-                datos: "2026 | 0 km | Auton. 500km"
+                datos: "2026 | 0 km | Batería LFP eficiente<br>HUD Display Inteligente integrado"
             },
             {
-                titulo: "Sedán Ejecutivo Confort STD",
-                categoria: "sedan",
-                precio: 31500,
+                titulo: "Arcfox T5 Pro Advanced",
+                categoria: "t5-pro",
+                precio: 42000,
                 imagen: "https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=500",
-                datos: "2025 | 12,500 km | Híbrido"
+                datos: "2026 | 0 km | Mayor Autonomía<br>Asistencias de Conducción Avanzadas"
             },
             {
-                titulo: "CrossOver Urbano Active Eco",
-                categoria: "suv",
-                precio: 24900,
+                titulo: "SUV EV Compacto Urbano",
+                categoria: "otros",
+                precio: 28900,
                 imagen: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=500",
-                datos: "2024 | 34,000 km | Nafta"
-            },
-            {
-                titulo: "Deportivo Eléctrico Performance GT",
-                categoria: "electrico",
-                precio: 68000,
-                imagen: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=500",
-                datos: "2026 | 0 km | 90kWh"
+                datos: "2025 | 8,500 km | Ideal para ciudad"
             }
         ];
 
@@ -312,7 +311,7 @@
             contenedor.innerHTML = "";
 
             if(listaAutos.length === 0) {
-                contenedor.innerHTML = `<div class="no-results">No hay publicaciones que coincidan.</div>`;
+                contenedor.innerHTML = `<div class="no-results">No hay publicaciones disponibles en esta categoría.</div>`;
                 return;
             }
 
@@ -340,7 +339,7 @@
             renderizarAutos(autosFiltrados);
         }
 
-        // Carga inicial
+        // Carga inicial al abrir la página
         renderizarAutos(inventario);
     </script>
 
