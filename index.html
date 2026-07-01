@@ -3,43 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotorVirtualUy | Vehículos Eléctricos e Info de Mercado</title>
+    <title>MotorVirtualUy | Vehículos e Info del Mercado Automotor</title>
     <style>
-        /* --- ESTILOS AL ESTILO MARKETPLACE / MERCADO LIBRE --- */
+        /* --- DISEÑO INTEGRAL AL ESTILO PORTAL AUTOMOTOR PREMIUM --- */
         :root {
-            --ml-yellow: #fff159; /* El color característico del header */
-            --bg-light: #ebebeb;  /* Fondo gris claro típico de las plataformas de comercio */
-            --text-dark: #333333;
-            --text-gray: #666666;
-            --price-color: #333333;
-            --link-blue: #3483fa; /* Azul de botones y enlaces */
-            --btn-green: #00a650; /* Verde de contacto/compra */
+            --primary-dark: #0f172a;   /* Azul marino oscuro (estilo Webmotors / Chileautos) */
+            --accent-blue: #0284c7;    /* Azul brillante comercial */
+            --accent-green: #22c55e;   /* Verde WhatsApp de conversión */
+            --bg-light: #f1f5f9;       /* Gris claro de fondo de e-commerce */
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --border-color: #e2e8f0;
         }
 
         body {
-            font-family: "Proxima Nova", -apple-system, Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-light);
             color: var(--text-dark);
         }
 
-        /* BARRA SUPERIOR ESTILO MARKETPLACE */
+        /* BARRA DE NAVEGACIÓN PRINCIPAL */
         header {
-            background-color: var(--ml-yellow);
-            padding: 0.8rem 2rem;
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+            background-color: var(--primary-dark);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
 
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -47,271 +44,433 @@
             gap: 15px;
         }
 
-        /* LOGOTIPO DE LA PÁGINA */
-        .logo {
-            font-size: 1.6rem;
-            font-weight: bold;
-            color: #1a252f;
+        /* DISEÑO EXCLUSIVO DEL LOGO */
+        .logo-container {
+            display: flex;
+            align-items: center;
             text-decoration: none;
+        }
+
+        .logo-box {
+            background: linear-gradient(135deg, var(--accent-blue), #0369a1);
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            box-shadow: 0 2px 4px rgba(2, 132, 199, 0.3);
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-left: 8px;
             letter-spacing: -0.5px;
         }
 
-        .logo span {
-            color: var(--link-blue);
+        .logo-text span {
+            color: var(--accent-blue);
         }
 
-        /* Buscador integrado en la barra */
-        .search-box {
+        /* Menú de Navegación */
+        nav {
             display: flex;
-            flex-grow: 1;
-            max-width: 600px;
-            background: white;
-            border-radius: 2px;
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-
-        .search-box select {
-            border: none;
-            padding: 0.6rem 1rem;
-            font-size: 0.95rem;
-            outline: none;
-            background: white;
-            border-right: 1px solid #ddd;
-            color: var(--text-gray);
-            width: 100%;
-        }
-
-        .search-box button {
-            background: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            cursor: pointer;
-            font-weight: bold;
-            color: var(--link-blue);
-            transition: background 0.2s;
-        }
-
-        .search-box button:hover {
-            background: #f5f5f5;
+            gap: 1.5rem;
+            align-items: center;
         }
 
         nav a {
-            color: #333;
+            color: #f8fafc;
             text-decoration: none;
-            margin-right: 1.5rem;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
         }
-        nav a:hover { color: var(--link-blue); }
 
-        /* CONTENEDOR PRINCIPAL */
+        nav a:hover {
+            color: var(--accent-blue);
+        }
+
+        nav a.active {
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 4px;
+        }
+
+        /* BUSCADOR ESTILO PORTAL DE AUTOS */
+        .search-section {
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1200') no-repeat center center/cover;
+            padding: 3rem 1rem;
+            text-align: center;
+            color: white;
+        }
+
+        .search-section h2 {
+            margin: 0 0 1.5rem 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .search-wrapper {
+            background: white;
+            padding: 0.5rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            display: flex;
+            max-width: 750px;
+            margin: 0 auto;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .search-wrapper select {
+            flex: 1;
+            min-width: 180px;
+            border: 1px solid var(--border-color);
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            color: var(--text-dark);
+            background-color: #fff;
+        }
+
+        .search-wrapper button {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-wrapper button:hover {
+            background-color: #0270a9;
+        }
+
+        /* CONTENEDOR DE LAS SECCIONES */
         .main-container {
             max-width: 1200px;
-            margin: 1.5rem auto;
+            margin: 2rem auto;
             padding: 0 1rem;
+        }
+
+        .page-section {
+            display: none; /* Ocultamos todas por defecto para gestionarlas dinámicamente */
+        }
+
+        .page-section.active {
+            display: block; /* Solo se muestra la sección activa */
+        }
+
+        .grid-layout {
             display: grid;
-            grid-template-columns: 3fr 1fr; /* Catálogo a la izquierda, información a la derecha */
-            gap: 1.5rem;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
         }
 
         @media (max-width: 900px) {
-            .main-container { grid-template-columns: 1fr; }
+            .grid-layout { grid-template-columns: 1fr; }
         }
 
         .section-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
         }
 
-        /* GRID DE PRODUCTOS */
+        /* GRID DE VEHÍCULOS AUTOMOTRICES */
         .grid-autos {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
         }
 
         .card-auto {
             background: white;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
-            transition: box-shadow 0.2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
             display: flex;
             flex-direction: column;
+            border: 1px solid var(--border-color);
         }
 
         .card-auto:hover {
-            box-shadow: 0 7px 16px 0 rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
 
         .card-img {
             width: 100%;
-            height: 160px;
+            height: 170px;
             object-fit: cover;
-            border-bottom: 1px solid #eee;
         }
 
         .card-content {
-            padding: 1rem;
+            padding: 1.2rem;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
         }
 
         .card-price {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--price-color);
-            margin-bottom: 0.3rem;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.4rem;
         }
 
         .card-title {
-            margin: 0 0 0.5rem 0;
-            font-size: 0.9rem;
-            color: #111;
+            margin: 0 0 0.6rem 0;
+            font-size: 1.05rem;
             font-weight: 600;
             line-height: 1.3;
         }
-        
+
         .card-specs {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-gray);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             line-height: 1.4;
+            background: #f8fafc;
+            padding: 0.5rem;
+            border-radius: 4px;
         }
 
-        .btn-contact {
-            display: block;
-            text-align: center;
-            background-color: var(--link-blue);
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent-green);
             color: white;
             text-decoration: none;
-            padding: 0.6rem;
-            border-radius: 4px;
+            padding: 0.7rem;
+            border-radius: 6px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-top: auto;
-            transition: background 0.2s;
+            transition: opacity 0.2s;
         }
-        .btn-contact:hover { background-color: #2968c8; }
 
-        /* BARRA LATERAL DE NOTICIAS / INFO */
-        .sidebar-news {
+        .btn-whatsapp:hover { opacity: 0.9; }
+
+        /* BARRA LATERAL (NOTICIAS / MERCADO) */
+        .sidebar {
             background: white;
-            padding: 1.2rem;
-            border-radius: 4px;
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
             height: fit-content;
         }
 
-        .mini-noticia {
-            border-bottom: 1px solid #eee;
-            padding: 0.8rem 0;
+        .news-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
         }
-        .mini-noticia:last-child { border: none; }
-        .noticia-tag { font-size: 0.7rem; color: #e67e22; text-transform: uppercase; font-weight: bold; }
-        .mini-noticia h4 { margin: 0.3rem 0; font-size: 0.95rem; font-weight: 600; }
-        .mini-noticia h4 a { color: var(--text-dark); text-decoration: none; }
-        .mini-noticia h4 a:hover { color: var(--link-blue); }
+
+        .news-item:last-child { border: none; }
+        .news-tag { font-size: 0.7rem; color: #e67e22; font-weight: bold; text-transform: uppercase; }
+        .news-item h4 { margin: 0.4rem 0 0 0; font-size: 1rem; font-weight: 600; }
+        .news-item h4 a { color: var(--text-dark); text-decoration: none; }
+        .news-item h4 a:hover { color: var(--accent-blue); }
+
+        /* --- SECCIÓN CONTACTO --- */
+        .contact-container {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .contact-method:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border: none;
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .icon-wa { background-color: var(--accent-green); }
+        .icon-mail { background-color: var(--accent-blue); }
+
+        .method-info h3 { margin: 0 0 0.3rem 0; font-size: 1.2rem; }
+        .method-info p { margin: 0; color: var(--text-gray); font-size: 1rem; }
+        
+        .method-link {
+            margin-left: auto;
+            background-color: var(--primary-dark);
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .method-link:hover { background-color: var(--accent-blue); }
 
         .no-results { grid-column: 1 / -1; text-align: center; color: var(--text-gray); padding: 3rem; }
     </style>
 </head>
 <body>
 
-    <!-- HEADER ESTILO MERCADO LIBRE -->
+    <!-- CONTROLADOR DE ENCABEZADO -->
     <header>
         <div class="header-container">
-            <div class="header-top">
-                <a href="#" class="logo">MotorVirtual<span>Uy</span></a> 
-                
-                <!-- Buscador de Categorías -->
-                <div class="search-box">
-                    <select id="categorySelect">
-                        <option value="todos">Todos los Modelos Arcfox</option>
-                        <option value="t5-std">Arcfox T5 (Standard)</option>
-                        <option value="t5-pro">Arcfox T5 (Advanced/Pro)</option>
-                        <option value="otros">Otros Modelos EV</option>
-                    </select>
-                    <button onclick="filtrarVehiculos()">Buscar</button>
-                </div>
-            </div>
+            <!-- LOGO INTEGRADO EXCLUSIVO -->
+            <a href="#" class="logo-container" onclick="cambiarSeccion('inicio')">
+                <div class="logo-box">MV</div>
+                <div class="logo-text">MotorVirtual<span>Uy</span></div>
+            </a> 
+            
+            <!-- MENÚ DE NAVEGACIÓN ACTIVO -->
             <nav>
-                <a href="#">Modelos Disponibles</a>
-                <a href="#">Análisis de Mercado</a>
-                <a href="#">Contacto Comercial</a>
+                <a href="#" id="nav-inicio" class="active" onclick="cambiarSeccion('inicio')">Vehículos</a>
+                <a href="#" id="nav-contacto" onclick="cambiarSeccion('contacto')">Contacto comercial</a>
             </nav>
         </div>
     </header>
 
-    <!-- CONTENIDO GENERAL -->
-    <main class="main-container">
-        
-        <!-- COLUMNA IZQUIERDA: CATALOGO -->
-        <section>
-            <div class="section-title">Publicaciones Destacadas</div>
-            <div class="grid-autos" id="contenedorAutos">
-                <!-- Se carga dinámicamente con JavaScript -->
+    <!-- PÁGINA 1: INICIO (CATÁLOGO Y BUSCADOR) -->
+    <div id="seccion-inicio" class="page-section active">
+        <section class="search-section">
+            <h2>Busca en el stock inteligente de Uruguay</h2>
+            <div class="search-wrapper">
+                <select id="categorySelect">
+                    <option value="todos">Todos los Modelos</option>
+                    <option value="t5-std">Arcfox T5 (Standard)</option>
+                    <option value="t5-pro">Arcfox T5 (Advanced / Pro)</option>
+                    <option value="otros">Otros Vehículos Eléctricos</option>
+                </select>
+                <button onclick="filtrarVehiculos()">Filtrar Catálogo</button>
             </div>
         </section>
 
-        <!-- COLUMNA DERECHA: INFO DE MERCADO -->
-        <aside class="sidebar-news">
-            <div class="section-title" style="font-size: 1.1rem;">Análisis e Info de Mercado</div>
+        <main class="main-container grid-layout">
+            <!-- Bloque de Publicaciones -->
+            <section>
+                <div class="section-title">Publicaciones Destacadas</div>
+                <div class="grid-autos" id="contenedorAutos">
+                    <!-- Se renderizan automáticamente vía JS -->
+                </div>
+            </section>
+
+            <!-- Bloque de Mercado Lateral -->
+            <aside class="sidebar">
+                <div class="section-title" style="font-size: 1.1rem; margin-bottom: 1rem;">Análisis de Mercado</div>
+                
+                <div class="news-item">
+                    <span class="news-tag">Comparativas</span>
+                    <h4><a href="#">Arcfox frente a BYD: Análisis de posicionamiento comercial y ventajas del segmento</a></h4>
+                </div>
+
+                <div class="news-item">
+                    <span class="news-tag">Tecnología</span>
+                    <h4><a href="#">¿Cómo opera el Head-Up Display (HUD) integrado en el Arcfox T5 Standard?</a></h4>
+                </div>
+
+                <div class="news-item">
+                    <span class="news-tag">Especificaciones</span>
+                    <h4><a href="#">Baterías de Litio LFP vs Ternarias: Autonomía real en el mercado automotor</a></h4>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- PÁGINA 2: RAMA / SECCIÓN DE CONTACTO -->
+    <div id="seccion-contacto" class="page-section">
+        <main class="main-container">
+            <div class="section-title" style="text-align: center; max-width: 600px; margin: 0 auto 2rem auto;">Canales de Atención MotorVirtualUy</div>
             
-            <div class="mini-noticia">
-                <span class="noticia-tag">Comparativas</span>
-                <h4><a href="#">Arcfox vs. BYD: Análisis de posicionamiento dinámico y ventajas competitivas</a></h4>
+            <div class="contact-container">
+                <!-- Vía WhatsApp -->
+                <div class="contact-method">
+                    <div class="icon-circle icon-wa">📞</div>
+                    <div class="method-info">
+                        <h3>WhatsApp Comercial</h3>
+                        <p>096 688 874</p>
+                    </div>
+                    <a href="https://wa.me/59896688874?text=Hola!%20Me%20interesa%20obtener%20informaci%C3%B3n%20sobre%20un%20veh%C3%ADculo." target="_blank" class="method-link">Enviar Mensaje</a>
+                </div>
+
+                <!-- Vía Email -->
+                <div class="contact-method">
+                    <div class="icon-circle icon-mail">✉️</div>
+                    <div class="method-info">
+                        <h3>Correo Electrónico</h3>
+                        <p>ea.motorvirtual@gmail.com</p>
+                    </div>
+                    <a href="mailto:ea.motorvirtual@gmail.com?subject=Consulta%20Automotriz%20-%20MotorVirtualUy" class="method-link">Escribir Email</a>
+                </div>
             </div>
+        </main>
+    </div>
 
-            <div class="mini-noticia">
-                <span class="noticia-tag">Tecnología</span>
-                <h4><a href="#">¿Cómo funciona el Head-Up Display (HUD) inteligente en el Arcfox T5?</a></h4>
-            </div>
-
-            <div class="mini-noticia">
-                <span class="noticia-tag">Especificaciones</span>
-                <h4><a href="#">Baterías LFP y Ternarias: Rendimiento, ciclos de vida y carga rápida en vehículos modernos</a></h4>
-            </div>
-        </aside>
-
-    </main>
-
-    <!-- LÓGICA DE JAVASCRIPT -->
+    <!-- LÓGICA INTERACTIVA EN JAVASCRIPT -->
     <script>
-        // BASE DE DATOS DE VEHÍCULOS CONFIGURADA
+        // BASE DE DATOS DE VEHÍCULOS ACTUALIZADA CON DATOS COMERCIALES
         const inventario = [
             {
                 titulo: "Arcfox T5 Standard (STD)",
                 categoria: "t5-std",
                 precio: 36500,
                 imagen: "https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=500",
-                datos: "2026 | 0 km | Batería LFP eficiente<br>HUD Display Inteligente integrado"
+                datos: "2026 | 0 km | Eléctrico<br>Batería LFP inteligente & HUD Display"
             },
             {
                 titulo: "Arcfox T5 Pro Advanced",
                 categoria: "t5-pro",
                 precio: 42000,
                 imagen: "https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=500",
-                datos: "2026 | 0 km | Mayor Autonomía<br>Asistencias de Conducción Avanzadas"
+                datos: "2026 | 0 km | Eléctrico<br>Máxima autonomía & Conducción Autónoma"
             },
             {
-                titulo: "SUV EV Compacto Urbano",
+                titulo: "SUV EV Compacto Urbano Sport",
                 categoria: "otros",
                 precio: 28900,
                 imagen: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=500",
-                datos: "2025 | 8,500 km | Ideal para ciudad"
+                datos: "2025 | 8,500 km | Eléctrico<br>Ideal para movilidad diaria urbana"
             }
         ];
 
+        // RENDERIZADOR DINÁMICO DEL INVENTARIO
         function renderizarAutos(listaAutos) {
             const contenedor = document.getElementById('contenedorAutos');
             contenedor.innerHTML = "";
 
             if(listaAutos.length === 0) {
-                contenedor.innerHTML = `<div class="no-results">No hay publicaciones disponibles en esta categoría.</div>`;
+                contenedor.innerHTML = `<div class="no-results">No se encontraron publicaciones en esta categoría.</div>`;
                 return;
             }
 
@@ -320,10 +479,12 @@
                     <article class="card-auto">
                         <img src="${auto.imagen}" alt="${auto.titulo}" class="card-img">
                         <div class="card-content">
-                            <div class="card-price">$ ${auto.precio.toLocaleString()}</div>
+                            <div class="card-price">U$S ${auto.precio.toLocaleString()}</div>
                             <h3 class="card-title">${auto.titulo}</h3>
                             <div class="card-specs">${auto.datos}</div>
-                            <a href="https://wa.me/tuNumeroAqui" target="_blank" class="btn-contact">Ver detalles / Contactar</a>
+                            <a href="https://wa.me/59896688874?text=Hola!%20Me%20interesa%20el%20modelo:%20${encodeURIComponent(auto.titulo)}" target="_blank" class="btn-whatsapp">
+                                Consultar por WhatsApp
+                            </a>
                         </div>
                     </article>
                 `;
@@ -331,15 +492,25 @@
             });
         }
 
-        function filtrarVehiculos() {
-            const categoriaSeleccionada = document.getElementById('categorySelect').value;
-            const autosFiltrados = inventario.filter(auto => {
-                return (categoriaSeleccionada === 'todos' || auto.categoria === categoriaSeleccionada);
-            });
-            renderizarAutos(autosFiltrados);
+        // ENRUTADOR/SISTEMA DE PÁGINAS DINÁMICAS
+        function cambiarSeccion(seccionId) {
+            // Desactivar secciones y enlaces
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+
+            // Activar la seleccionada
+            document.getElementById(`seccion-${seccionId}`).classList.add('active');
+            document.getElementById(`nav-${seccionId}`).classList.add('active');
         }
 
-        // Carga inicial al abrir la página
+        // CONTROLADOR FILTROS
+        function filtrarVehiculos() {
+            const seleccion = document.getElementById('categorySelect').value;
+            const filtrados = inventario.filter(auto => seleccion === 'todos' || auto.categoria === seleccion);
+            renderizarAutos(filtrados);
+        }
+
+        // Arranque inicial automático
         renderizarAutos(inventario);
     </script>
 
