@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoMarket | Buscador Dinámico</title>
+    <style>
+        :root {
+            --primary-color: #1a252f;
+            --accent-color: #3498db;
+            --bg-light: #f8f9fa;
+            --text-dark: #2c3e50;
+            --news-accent: #e67e22;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 { margin: 0; font-size: 1.5rem; }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1200') no-repeat center center/cover;
+            height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .search-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .search-container select, .search-container button {
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 150px;
+            font-size: 1rem;
+        }
+
+        .search-container button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        h2 {
+            border-left: 5px solid var(--accent-color);
+            padding-left: 10px;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2.news-title { border-left-color: var(--news-accent); }
+
+        /* Grid de Autos */
+        .grid-autos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            min-height: 200px;
+        }
+
+        .card-auto {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .card-auto:hover { transform: translateY(-5px); }
+        .card-img { width: 100%; height: 200px; object-fit: cover; background-color: #ddd; }
+        .card-content { padding: 1.5rem; }
+        .card-title { margin: 0 0 0.5rem 0; font-size: 1.3rem; }
+        
+        .card-specs {
+            display: flex;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .spec-tag { background-color: #eaeded; padding: 2px 8px; border-radius: 4px; }
+        .card-price { font-size: 1.4rem; font-weight: bold; color: var(--accent-color); margin-bottom: 1rem; }
+        
+        .btn-contact {
+            display: block;
+            text-align: center;
+            background-color: #2ecc71;
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* Grid de Noticias */
+        .grid-noticias {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card-noticia { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+        .noticia-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .noticia-tag { font-size: 0.75rem; text-transform: uppercase; font-weight: bold; color: var(--news-accent); margin-bottom: 0.5rem; }
+        .noticia-title { margin: 0 0 0.8rem 0; font-size: 1.2rem; line-height: 1.4; }
+        .noticia-excerpt { font-size: 0.9rem; color: #7f8c8d; line-height: 1.5; margin-bottom: 1.5rem; flex-grow: 1; }
+        .btn-leer { color: var(--news-accent); text-decoration: none; font-weight: bold; font-size: 0.9rem; align-self: flex-start; }
+        .btn-leer:hover { text-decoration: underline; }
+        
+        .no-results { grid-column: 1 / -1; text-align: center; color: #7f8c8d; padding: 3rem; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AutoMarket</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Inventario</a>
+            <a href="#">Análisis de Mercado</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Encuentra tu próximo vehículo</h2>
+        <div class="search-container">
+            <select id="categorySelect">
+                <option value="todos">Todas las categorías</option>
+                <option value="electrico">Modelos Eléctricos</option>
+                <option value="suv">SUVs</option>
+                <option value="sedan">Sedanes</option>
+            </select>
+            <select id="priceSelect">
+                <option value="todos">Cualquier Precio</option>
+                <option value="bajo">Hasta $35,000</option>
+                <option value="alto">Más de $35,000</option>
+            </select>
+            <button onclick="filtrarVehiculos()">Buscar Ahora</button>
+        </div>
+    </section>
+
+    <main class="main-container">
+        
+        <h2>Vehículos Disponibles</h2>
+        <div class="grid-autos" id="contenedorAutos">
+            </div>
+
+        <h2 class="news-title">Info del Mercado & Tendencias</h2>
+        <div class="grid-noticias">
+            <article class="card-noticia">
+                <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?q=80&w=500" alt="Comparativa" class="card-img">
+                <div class="noticia-content">
+                    <span class="noticia-tag">Comparativas</span>
+                    <h3 class="noticia-title">Duelo de Gigantes: Nuevas alternativas en el segmento SUV Eléctrico</h3>
+                    <p class="noticia-excerpt">Analizamos el posicionamiento y la relación costo-beneficio de los últimos lanzamientos frente a las firmas tradicionales.</p>
+                    <a href="#" class="btn-leer">Leer análisis completo →</a>
+                </div>
+            </article>
+
+            <article class="card-noticia">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=500" alt="Tecnología" class="card-img">
+                <div class="noticia-content">
+                    <span class="noticia-tag">Tecnología</span>
+                    <h3 class="noticia-title">¿Qué es el HUD (Head-Up Display) y cómo mejora la conducción?</h3>
+                    <p class="noticia-excerpt">Descubre cómo funciona el sistema de visualización proyectada en el parabrisas y sus ventajas en seguridad.</p>
+                    <a href="#" class="btn-leer">Ver guía técnica →</a>
+                </div>
+            </article>
+        </div>
+
+    </main>
+
+    <script>
+        // 1. NUESTRA BASE DE DATOS DE VEHÍCULOS (Puedes añadir más aquí siguiendo el mismo formato)
+        const inventario = [
+            {
+                titulo: "SUV Eléctrico Inteligente",
+                categoria: "electrico",
+                precio: 42900,
+                imagen: "https://images.unsplash.com/photo-1563720223185-11003d516935?q=80&w=500",
+                specs: ["Nuevo", "Autonomía: 500 km", "HUD Display"]
+            },
+            {
+                titulo: "Sedán Ejecutivo STD",
+                categoria: "sedan",
+                precio: 31500,
+                imagen: "https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=500",
+                specs: ["2025", "Híbrido", "Full Equipo"]
+            },
+            {
+                titulo: "CrossOver Urbano Eco",
+                categoria: "suv",
+                precio: 24900,
+                imagen: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=500",
+                specs: ["Usado", "Gasolina", "Económico"]
+            },
+            {
+                titulo: "Deportivo Eléctrico GT",
+                categoria: "electrico",
+                precio: 68000,
+                imagen: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=500",
+                specs: ["Nuevo", "0-100 km/h: 3.2s", "Batería 90kWh"]
+            }
+        ];
+
+        // 2. FUNCIÓN PARA MOSTRAR LOS AUTOS EN LA WEB
+        function renderizarAutos(listaAutos) {
+            const contenedor = document.getElementById('contenedorAutos');
+            contenedor.innerHTML = ""; // Limpiar contenido previo
+
+            if(listaAutos.length === 0) {
+                contenedor.innerHTML = `<div class="no-results">No se encontraron vehículos con los filtros seleccionados.</div>`;
+                return;
+            }
+
+            listaAutos.forEach(auto => {
+                // Generar las etiquetas de especificaciones
+                const etiquetasHTML = auto.specs.map(spec => `<span class="spec-tag">${spec}</span>`).join('');
+
+                // Crear la tarjeta del auto
+                const tarjeta = `
+                    <article class="card-auto">
+                        <img src="${auto.imagen}" alt="${auto.titulo}" class="card-img">
+                        <div class="card-content">
+                            <h3 class="card-title">${auto.titulo}</h3>
+                            <div class="card-specs">
+                                ${etiquetasHTML}
+                            </div>
+                            <div class="card-price">$${auto.precio.toLocaleString()}</div>
+                            <a href="https://wa.me/tuNumeroAqui" target="_blank" class="btn-contact">Consultar por WhatsApp</a>
+                        </div>
+                    </article>
+                `;
+                contenedor.innerHTML += tarjeta;
+            });
+        }
+
+        // 3. FUNCIÓN DEL BUSCADOR (FILTRADO)
+        function filtrarVehiculos() {
+            const categoriaSeleccionada = document.getElementById('categorySelect').value;
+            const precioSeleccionado = document.getElementById('priceSelect').value;
+
+            const autosFiltrados = inventario.filter(auto => {
+                // Validar categoría
+                const cumpleCategoria = (categoriaSeleccionada === 'todos' || auto.categoria === categoriaSeleccionada);
+                
+                // Validar precio
+                let cumplePrecio = true;
+                if (precioSeleccionado === 'bajo') cumplePrecio = auto.precio <= 35000;
+                if (precioSeleccionado === 'alto') cumplePrecio = auto.precio > 35000;
+
+                return cumpleCategoria && cumplePrecio;
+            });
+
+            renderizarAutos(autosFiltrados);
+        }
+
+        // Cargar todos los autos automáticamente cuando se abre la página por primera vez
+        renderizarAutos(inventario);
+    </script>
+
+</body>
+</html>
